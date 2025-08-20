@@ -1,103 +1,523 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Car, Shield, MapPin, Phone, Star, Users, Menu, X, Zap, Cpu, Wifi, BanknoteX, BanknoteArrowUp, Timer } from "lucide-react"
+import Image from "next/image"
+
+export default function CarRentalPage() {
+  const [activeSection, setActiveSection] = useState("home")
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "fleet", "testimonial", "booking", "contact"]
+      const scrollPosition = window.scrollY + 100
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const offsetTop = element.offsetTop
+          const offsetHeight = element.offsetHeight
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+    setIsMobileMenuOpen(false)
+  }
+
+  const openWhatsApp = (carName?: string) => {
+    const phoneNumber = "6281234567890" // Ganti dengan nomor WhatsApp Anda
+    const message = carName
+      ? `Halo, saya tertarik untuk menyewa ${carName}. Bisa berikan informasi lebih lanjut?`
+      : "Halo, saya tertarik dengan layanan rental mobil Anda. Bisa berikan informasi lebih lanjut?"
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, "_blank")
+  }
+
+  const cars = [
+    {
+      name: "ALPHARD",
+      image: "/alphard.avif",
+      price: "Rp 1.200.000",
+      features: ["5 Penumpang"],
+      rating: 4.9,
+      type: "Gas",
+    },
+    {
+      name: "FORTUNER",
+      image: "/fortuner.avif",
+      price: "Rp 700.000",
+      features: ["5 Penumpang", "Sport Mode"],
+      rating: 4.8,
+      type: "Gas",
+    },
+    {
+      name: "PAJERO",
+      image: "/pajero.avif",
+      price: "Rp 500.000",
+      features: ["4 Penumpang", "Sport Mode"],
+      rating: 4.9,
+      type: "Gas",
+    },
+
+  ]
+
+  const services = [
+    {
+      icon: Zap,
+      title: "Charging Network",
+      description: "Akses ke jaringan charging station terluas di Indonesia",
+    },
+    {
+      icon: Cpu,
+      title: "AI Assistant",
+      description: "Asisten AI dalam kendaraan untuk pengalaman berkendara optimal",
+    },
+    {
+      icon: Wifi,
+      title: "Connected Car",
+      description: "Konektivitas 5G dan IoT untuk kontrol kendaraan jarak jauh",
+    },
+    {
+      icon: Shield,
+      title: "Smart Security",
+      description: "Sistem keamanan canggih dengan biometric dan GPS tracking",
+    },
+  ]
+
+  const testimonials = [
+    {
+      name: "Pak Sutrisno",
+      role: "Pegawai Kementerian",
+      rating: 5,
+      comment:
+        "Pelayanan protokol yang sangat memuaskan! Driver profesional, mobil mewah, dan tepat waktu. Tamu VIP kami sangat terkesan!",
+    },
+    {
+      name: "Andi",
+      role: "Mahasiswa UNS",
+      rating: 5,
+      comment:
+        "Tanpa DP dan harga mahasiswa banget! Prosesnya mudah, mobilnya bersih, perfect buat trip sama teman-teman!",
+    },
+    {
+      name: "Bu Sari",
+      role: "Wisatawan Jakarta",
+      rating: 5,
+      comment:
+        "Setelah pernah ditipu rental lain, akhirnya nemu yang amanah! Admin komunikatif, mobil datang tepat waktu. Recommended!",
+    },
+  ]
+
+  const navigationItems = [
+    { id: "home", label: "Beranda" },
+    { id: "fleet", label: "Armada" },
+    { id: "testimonial", label: "Testimoni" },
+    { id: "booking", label: "Cara Pesan" },
+  ]
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-cyan-500/20">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <Car className="h-8 w-8 text-cyan-400" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-heading">
+              Hagia Transport
+            </span>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <nav className="hidden md:flex items-center gap-8">
+            {navigationItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`text-sm font-medium transition-all duration-300 hover:text-cyan-400 relative ${activeSection === item.id ? "text-cyan-400" : "text-slate-300"
+                  }`}
+              >
+                {item.label}
+                {activeSection === item.id && (
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full"></div>
+                )}
+              </button>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <Button
+              onClick={() => openWhatsApp()}
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 border-0 shadow-lg shadow-cyan-500/25"
+            >
+              <Phone className="h-4 w-4 mr-2" />
+              WhatsApp
+            </Button>
+
+            <button
+              className="md:hidden text-slate-300 hover:text-cyan-400 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-slate-900/98 backdrop-blur-md border-t border-cyan-500/20">
+            <nav className="container mx-auto px-4 py-4 space-y-2">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === item.id
+                    ? "bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400 border border-cyan-500/30"
+                    : "text-slate-300 hover:bg-slate-800/50 hover:text-cyan-400"
+                    }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-20 pb-16 relative overflow-hidden min-h-screen flex items-center">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-purple-500/10 rounded-full blur-lg animate-pulse delay-1000"></div>
+          <div className="absolute bottom-40 left-1/4 w-40 h-40 bg-cyan-400/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center max-w-5xl mx-auto">
+
+
+            {/* Main heading */}
+            <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 font-heading leading-tight">
+              <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
+                HAGIA TRANSPORT
+              </span>
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-6 py-2 mb-8 backdrop-blur-sm">
+                <Zap className="h-4 w-4 text-cyan-400" />
+                <span className="text-sm font-medium text-cyan-400">PROMO TERBATAS! Booking Hari Ini Dapat Diskon Khusus</span>
+              </div>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-xl lg:text-2xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+              BOSAN DITIPU
+              <span className="text-cyan-400 font-semibold"> Rental Mobil PALSU?</span> untuk pengalaman yang
+              seamless.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+              <Button
+                size="lg"
+                onClick={() => openWhatsApp()}
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 border-0 shadow-lg shadow-cyan-500/25 text-lg px-8 py-4 h-auto"
+              >
+                <Phone className="h-5 w-5 mr-2" />
+                Pesan Sekarang
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => scrollToSection("fleet")}
+                className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 text-lg px-8 py-4 h-auto"
+              >
+                Lihat Armada
+              </Button>
+            </div>
+
+            {/* Hero Image/Visual */}
+            <div className="relative max-w-4xl mx-auto">
+              {/* Glowing border effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-2xl blur-xl animate-pulse"></div>
+
+              {/* Main image container */}
+              <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl border border-cyan-500/30 backdrop-blur-sm overflow-hidden">
+                <Image
+                  src="/hero.avif"
+                  alt="Futuristic Electric Car"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto"
+                />
+
+
+              </div>
+            </div>
+
+            {/* Floating feature cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
+                <BanknoteX className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">JAMINAN 100% UANG KEMBALI</h3>
+                <p className="text-slate-400 text-sm">Neural network untuk pengalaman berkendara optimal</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-purple-500/20 p-6 hover:border-purple-500/40 transition-all duration-300">
+                <Zap className="h-8 w-8 text-purple-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">100% AMANAH</h3>
+                <p className="text-slate-400 text-sm">Admin tidak akan menghilang. Armada pasti datang sesuai janji. GARANSI!</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
+                <BanknoteArrowUp className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">TANPA DP</h3>
+                <p className="text-slate-400 text-sm">Untuk transaksi di bawah 1 juta rupiah. Bayar cash saat armada tiba!</p>
+              </div>
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
+                <Timer className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">TEPAT WAKTU</h3>
+                <p className="text-slate-400 text-sm">Driver datang 15 menit sebelum jadwal. Profesional dan attitude bagus!</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fleet Section */}
+      <section id="fleet" className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 font-heading">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                Armada Premium Untuk Setiap Kebutuhan
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+              Dari VIP sampai ekonomis, semua tersedia dan terawat!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cars.map((car, index) => (
+              <Card
+                key={index}
+                className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 group overflow-hidden"
+              >
+                <div className="relative">
+                  <Image src={car.image || "/placeholder.svg"} width={800} height={800} alt={car.name} className="w-full h-64 object-cover" />
+                  <div className="absolute top-4 right-4 bg-slate-900/90 px-3 py-1 rounded-full flex items-center gap-1 border border-cyan-500/30">
+                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <span className="text-sm font-medium text-white">{car.rating}</span>
+                  </div>
+
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-white mb-2 font-heading">{car.name}</h3>
+                  <div className="flex items-center gap-4 mb-4 text-sm text-slate-400">
+                    {car.features.map((feature, idx) => (
+                      <span key={idx} className="flex items-center gap-1">
+                        {idx === 0 && <Users className="h-4 w-4" />}
+                        {idx === 1 && <Zap className="h-4 w-4" />}
+                        {idx === 2 && <Cpu className="h-4 w-4" />}
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        {car.price}
+                      </span>
+                      <span className="text-sm text-slate-400">/hari</span>
+                    </div>
+                    <Button
+                      onClick={() => openWhatsApp(car.name)}
+                      className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 border-0"
+                    >
+                      Pesan
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonial" className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 font-heading">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                Apa Kata Pelanggan Kami?
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+              Lebih dari 500 pelanggan sudah merasakan pelayanan terbaik kami!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card
+                key={index}
+                className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300"
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-slate-300 mb-4 italic">{testimonial.comment}</p>
+                  <div>
+                    <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                    <p className="text-cyan-400 text-sm">{testimonial.role}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <h3 className="text-2xl font-bold text-white mb-4">Bergabunglah dengan 500+ Pelanggan Puas Lainnya!</h3>
+            <p className="text-lg text-slate-300 mb-6">
+              Jangan biarkan pengalaman buruk terulang. Pilih yang TERPERCAYA!
+            </p>
+            <Button
+              size="lg"
+              onClick={() => openWhatsApp()}
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 border-0 shadow-lg shadow-cyan-500/25 text-lg px-8 py-4"
+            >
+              <Phone className="h-5 w-5 mr-2" />
+              SAYA MAU BOOKING SEKARANG!
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Process Section */}
+      <section id="booking" className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 font-heading">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                3 CARA MUDAH BOOKING:
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/30 group-hover:border-green-400/50 transition-all duration-300">
+                <Phone className="h-10 w-10 text-green-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2 font-heading">WhatsApp</h3>
+              <p className="text-slate-300 mb-4">Chat langsung dengan admin</p>
+              <Button
+                onClick={() => openWhatsApp()}
+                className="bg-green-600 hover:bg-green-700 text-white font-semibold"
+              >
+                CHAT SEKARANG
+              </Button>
+            </div>
+
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-500/30 group-hover:border-blue-400/50 transition-all duration-300">
+                <Phone className="h-10 w-10 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2 font-heading">Telepon</h3>
+              <p className="text-slate-300 mb-4">Hubungi langsung 24/7</p>
+              <Button
+                variant="outline"
+                className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 bg-transparent"
+              >
+                TELEPON SEKARANG
+              </Button>
+            </div>
+
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-500/30 group-hover:border-purple-400/50 transition-all duration-300">
+                <MapPin className="h-10 w-10 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2 font-heading">Datang Langsung</h3>
+              <p className="text-slate-300 mb-4">Kunjungi kantor kami</p>
+              <Button
+                variant="outline"
+                className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 bg-transparent"
+              >
+                LIHAT ALAMAT
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-slate-900 to-purple-900 border-t border-cyan-500/20 py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="relative">
+                  <Car className="h-8 w-8 text-cyan-400" />
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-heading">
+                  Hagia Transport
+                </span>
+              </div>
+              <p className="text-slate-300 mb-4">
+                Pionir transportasi masa depan dengan teknologi AI dan kendaraan elektrik terdepan di Indonesia.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold mb-4 font-heading text-white">Layanan Future</h4>
+              <ul className="space-y-2 text-slate-300">
+                <li>• Autonomous Driving</li>
+                <li>• AI Navigation</li>
+                <li>• Smart Charging</li>
+                <li>• Quantum Security</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold mb-4 font-heading text-white">Neural Network</h4>
+              <div className="space-y-2 text-slate-300">
+                <p>WhatsApp AI: +62 812-3456-7890</p>
+                <p>Neural Mail: ai@neorent.future</p>
+                <p>Quantum Hub: Cyber District, Neo Jakarta</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-cyan-500/20 mt-8 pt-8 text-center text-slate-400">
+            <p>&copy; 2024 NeoRent. Powered by Quantum AI Technology.</p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }

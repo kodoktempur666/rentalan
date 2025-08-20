@@ -42,14 +42,18 @@ export default function CarRentalPage() {
   }
 
   const openWhatsApp = (carName?: string) => {
-    const phoneNumber = "6281234567890" // Ganti dengan nomor WhatsApp Anda
+    const phoneNumber = "6281228797795";
     const message = carName
       ? `Halo, saya tertarik untuk menyewa ${carName}. Bisa berikan informasi lebih lanjut?`
-      : "Halo, saya tertarik dengan layanan rental mobil Anda. Bisa berikan informasi lebih lanjut?"
+      : "Halo, saya tertarik dengan layanan rental mobil Anda. Bisa berikan informasi lebih lanjut?";
 
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, "_blank")
-  }
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappUrl;
+  };
+
+
+
+
 
   const cars = [
     {
@@ -79,28 +83,7 @@ export default function CarRentalPage() {
 
   ]
 
-  const services = [
-    {
-      icon: Zap,
-      title: "Charging Network",
-      description: "Akses ke jaringan charging station terluas di Indonesia",
-    },
-    {
-      icon: Cpu,
-      title: "AI Assistant",
-      description: "Asisten AI dalam kendaraan untuk pengalaman berkendara optimal",
-    },
-    {
-      icon: Wifi,
-      title: "Connected Car",
-      description: "Konektivitas 5G dan IoT untuk kontrol kendaraan jarak jauh",
-    },
-    {
-      icon: Shield,
-      title: "Smart Security",
-      description: "Sistem keamanan canggih dengan biometric dan GPS tracking",
-    },
-  ]
+
 
   const testimonials = [
     {
@@ -139,13 +122,13 @@ export default function CarRentalPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-cyan-500/20">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="relative">
-              <Car className="h-8 w-8 text-cyan-400" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
-            </div>
+
             <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-heading">
               Hagia Transport
             </span>
+            <div className="relative">
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+            </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -165,13 +148,7 @@ export default function CarRentalPage() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Button
-              onClick={() => openWhatsApp()}
-              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 border-0 shadow-lg shadow-cyan-500/25"
-            >
-              <Phone className="h-4 w-4 mr-2" />
-              WhatsApp
-            </Button>
+
 
             <button
               className="md:hidden text-slate-300 hover:text-cyan-400 transition-colors"
@@ -489,32 +466,32 @@ export default function CarRentalPage() {
                 </span>
               </div>
               <p className="text-slate-300 mb-4">
-                Pionir transportasi masa depan dengan teknologi AI dan kendaraan elektrik terdepan di Indonesia.
+                Kami HAGIA TRANSPORT hadir sebagai solusi TERPERCAYA untuk semua masalah rental mobil di Solo.
               </p>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4 font-heading text-white">Layanan Future</h4>
+              <h4 className="text-lg font-semibold mb-4 font-heading text-white">Jika Booking Sekarang</h4>
               <ul className="space-y-2 text-slate-300">
-                <li>• Autonomous Driving</li>
-                <li>• AI Navigation</li>
-                <li>• Smart Charging</li>
-                <li>• Quantum Security</li>
+                <li>• Hemat 20% dari harga normal</li>
+                <li>• Gratis driver profesional 24 jam</li>
+                <li>• Pilihan armada premium terlengkap</li>
+                <li>• Jaminan 100% uang kembali</li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4 font-heading text-white">Neural Network</h4>
+              <h4 className="text-lg font-semibold mb-4 font-heading text-white">Kontak</h4>
               <div className="space-y-2 text-slate-300">
-                <p>WhatsApp AI: +62 812-3456-7890</p>
-                <p>Neural Mail: ai@neorent.future</p>
-                <p>Quantum Hub: Cyber District, Neo Jakarta</p>
+                <p>WhatsApp : +62 812-3456-7890</p>
+                <p>Email: info@example.com</p>
+                <p>Alamat: Solo, Indonesia</p>
               </div>
             </div>
           </div>
 
           <div className="border-t border-cyan-500/20 mt-8 pt-8 text-center text-slate-400">
-            <p>&copy; 2024 NeoRent. Powered by Quantum AI Technology.</p>
+            <p>&copy; 2025 Hagia Transport. All rights reserved.</p>
           </div>
         </div>
       </footer>

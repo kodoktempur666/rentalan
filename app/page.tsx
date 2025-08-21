@@ -210,8 +210,8 @@ export default function CarRentalPage() {
             {/* Subtitle */}
             <div className="space-y-6 max-w-3xl mx-auto mb-12">
               <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed">
-                Butuh mobil untuk <span className="text-cyan-400 font-semibold">kegiatan kampus, wisata, atau acara bersama teman?</span>
-                Hagia Transport hadir dengan syarat sewa yang <span className="text-cyan-400 font-semibold">mudah, harga kompetitif,</span> dan armada yang lengkap.
+                Butuh mobil untuk <span className="text-cyan-400 font-semibold">kegiatan kampus, wisata, atau acara bersama teman? </span>
+                 Hagia Transport hadir dengan syarat sewa yang <span className="text-cyan-400 font-semibold">mudah, harga kompetitif,</span> dan armada yang lengkap.
               </p>
 
               {/* 3 key points */}

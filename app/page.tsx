@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -19,11 +19,12 @@ import {
   Timer,
 } from "lucide-react"
 import Image from "next/image"
+import { useKeenSlider } from "keen-slider/react"
 
 export default function CarRentalPage() {
   const [activeSection, setActiveSection] = useState("home")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
+  const [currentSlide, setCurrentSlide] = useState(0)
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "fleet", "testimonial", "booking", "contact"]
@@ -123,10 +124,59 @@ export default function CarRentalPage() {
     { id: "booking", label: "Cara Pesan" },
   ]
 
+  const heroSlides = [
+    {
+      image: "/ilu1.jpg",
+      title: "Pernah DP, Untuk Booking Rental Mobil, tapi Saat Hari Sewa , Mobil Tidak Datang?",
+      description: " Sudah DP untuk Booking  tapi Mendadak Nomor admin Menghilang. Sini nih Aku Tunjukin Perusahaan Rental Mobil Di Solo Yang amanah.",
+    },
+    {
+      image: "/ilu2.jpg",
+      title: "Melayani Booking Armada Tanpa DP di transaksi di Bawah 1 jt.",
+      description: "Hagia Transport rental Mobil Di kota Solo, rental Mobil Yang Terpercaya Armada Datang Tepat waktu, dengan Proses Mudah. Dan pastinya Admin Yang komunikatif dan Profesional  "
+
+    },
+    {
+      image: "/ilu3.jpg",
+      title: "Mau Ada kegiatan Kampus  yang Membutuhkan Mobil Atau Acara Wisata Dengan Teman teman  mahasiswa.",
+      description: "Masih Bingung Mau Sewa Mobil Yang Syarat nya Mudah, Harga Kompetitif, Armada Lengkap. ?"
+
+    },
+    {
+      image: "/ilu4.jpg",
+      title: "Rental Mobil Hagia Transport Siap melayani Kebutuhan Perjalanan Mu.",
+      description: "Sewa Mobil untuk  Mahasiswa Di Solo. Hagia Transport Solusi nya"
+
+    },
+    {
+      image: "/ilu5.jpg",
+      title: "Butuh Armada VIP, Seperti Alphard  , Fortuner, Innova dan New Avanza",
+      description: "Pelayanan Protokol Kementrian. Dengan Tamu VIP dan VVIP"
+
+    },
+    {
+      image: "/ilu6.jpg",
+      title: "Pelayanan dari Penjemputan Bandara, Di Venue kegiatan , hotel sampai kembali lagi Ke bandara.",
+      description: "Dengan Driver Yang Masih Muda, Rapi komunikatif , dan Handal. "
+
+    }
+
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    }, 7000)
+
+    return () => clearInterval(interval)
+  }, [heroSlides.length])
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+
+
+    < div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900" >
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-cyan-500/20">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-cyan-500/20" >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-heading">
@@ -180,122 +230,140 @@ export default function CarRentalPage() {
               ))}
             </nav>
           </div>
-        )}
-      </header>
+        )
+        }
+      </header >
 
       {/* Hero Section */}
-      <section id="home" className="pt-20 pb-16 relative overflow-hidden min-h-screen flex items-center">
+      <section id="home" className="pt-16 sm:pt-20 pb-8 sm:pb-16 relative overflow-hidden min-h-screen flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-24 h-24 bg-purple-500/10 rounded-full blur-lg animate-pulse delay-1000"></div>
-          <div className="absolute bottom-40 left-1/4 w-40 h-40 bg-cyan-400/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+          <div className="absolute top-20 left-10 w-16 h-16 sm:w-32 sm:h-32 bg-cyan-500/10 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-12 h-12 sm:w-24 sm:h-24 bg-purple-500/10 rounded-full blur-lg animate-pulse delay-1000"></div>
+          <div className="absolute bottom-40 left-1/4 w-20 h-20 sm:w-40 sm:h-40 bg-cyan-400/5 rounded-full blur-2xl animate-pulse delay-500"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
+            {/* Promo Badge */}
+
+
             {/* Main heading */}
-            <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 font-heading leading-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold mb-4 mt-6 sm:mb-6 leading-tight">
               <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
                 HAGIA TRANSPORT
               </span>
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-6 py-2 mb-8 backdrop-blur-sm">
-                <Zap className="h-4 w-4 text-cyan-400" />
-                <span className="text-sm font-medium text-cyan-400">
-                  PROMO TERBATAS! Khusus Mahasiswa Solo
-                </span>
-              </div>
             </h1>
 
             {/* Subtitle */}
-            <div className="space-y-6 max-w-3xl mx-auto mb-12">
-              <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed">
-                Butuh mobil untuk <span className="text-cyan-400 font-semibold">kegiatan kampus, wisata, atau acara bersama teman? </span>
-                 Hagia Transport hadir dengan syarat sewa yang <span className="text-cyan-400 font-semibold">mudah, harga kompetitif,</span> dan armada yang lengkap.
+            <div className="space-y-4 sm:space-y-6 max-w-3xl mx-auto mb-8 sm:mb-12">
+              <p className="text-sm sm:text-lg lg:text-xl text-slate-300 leading-relaxed px-4">
+                Bosan ditipu rental mobil palsu? {" "}
+                <span className="text-cyan-400 font-semibold">
+                  HAGIA TRANSPORT
+                </span>{" "}
+                hadir sebagai solusi terpercaya untuk semua kebutuhan sewa mobil
+                di Solo. <span className="text-cyan-400 font-semibold">100% Amanah</span>
               </p>
+            </div>
 
-              {/* 3 key points */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-                <div className="flex items-center gap-3 bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3">
-                  <Car className="h-5 w-5 text-cyan-400" />
-                  <span className="text-slate-300 text-sm">Armada Lengkap</span>
+            {/* Image Slider */}
+            <div className="max-w-4xl mx-auto mb-8 sm:mb-12 relative">
+              <div className="overflow-hidden rounded-xl">
+                <div
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {heroSlides.map((slide, index) => (
+                    <div key={index} className="w-full flex-shrink-0 ">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 items-center p-4 border border-s-violet-700 sm:p-8">
+                        <div className="order-2 lg:order-1">
+                          <Image
+                            src={slide.image}
+                            alt={slide.title}
+                            width={700}
+                            height={900}
+                            className=" object-fill rounded-lg"
+                          />
+                        </div>
+                        <div className="text-left space-y-3 sm:space-y-4 order-1 lg:order-2">
+                          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-cyan-400 mb-2">
+                            {slide.title}
+                          </h3>
+                          <p className="text-sm sm:text-base text-slate-300">
+                            {slide.description}
+                          </p>
+
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex items-center gap-3 bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3">
-                  <Shield className="h-5 w-5 text-purple-400" />
-                  <span className="text-slate-300 text-sm">Syarat Mudah & Aman</span>
-                </div>
-                <div className="flex items-center gap-3 bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3">
-                  <BanknoteArrowUp className="h-5 w-5 text-cyan-400" />
-                  <span className="text-slate-300 text-sm">Harga Terjangkau</span>
-                </div>
+              </div>
+
+              {/* dots indicator */}
+              <div className="flex justify-center mt-4 gap-2">
+                {heroSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`h-2 w-2 rounded-full transition-all ${currentSlide === idx
+                      ? "bg-cyan-400 w-6"
+                      : "bg-slate-500/50 hover:bg-slate-400"
+                      }`}
+                  />
+                ))}
               </div>
             </div>
 
-
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 px-4">
               <Button
                 size="lg"
                 onClick={() => openWhatsApp()}
-                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 border-0 shadow-lg shadow-cyan-500/25 text-lg px-8 py-4 h-auto"
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 border-0 shadow-lg shadow-cyan-500/25 text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto"
               >
-                <Phone className="h-5 w-5 mr-2" />
+                <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Pesan Sekarang
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => scrollToSection("fleet")}
-                className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 text-lg px-8 py-4 h-auto"
+                className="w-full sm:w-auto border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto"
               >
                 Lihat Armada
               </Button>
             </div>
 
-            {/* Hero Image/Visual */}
-            <div className="relative max-w-4xl mx-auto">
-              {/* Glowing border effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-2xl blur-xl animate-pulse"></div>
-
-              {/* Main image container */}
-              <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl border border-cyan-500/30 backdrop-blur-sm overflow-hidden">
-                <Image
-                  src="/hero.avif"
-                  alt="Futuristic Electric Car"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-
             {/* Floating feature cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
-                <BanknoteX className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">JAMINAN 100% UANG KEMBALI</h3>
-                <p className="text-slate-400 text-sm">Neural network untuk pengalaman berkendara optimal</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-16 max-w-6xl mx-auto px-4">
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-4 sm:p-6 hover:border-cyan-500/40 transition-all duration-300">
+                <BanknoteX className="h-6 w-6 sm:h-8 sm:w-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
+                <h3 className="text-white font-semibold mb-2 text-sm sm:text-base">JAMINAN 100% UANG KEMBALI</h3>
+                <p className="text-slate-400 text-xs sm:text-sm">Jika tidak sesuai janji, uang 100% dikembalikan</p>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-purple-500/20 p-6 hover:border-purple-500/40 transition-all duration-300">
-                <Zap className="h-8 w-8 text-purple-400 mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">100% AMANAH</h3>
-                <p className="text-slate-400 text-sm">
-                  Admin tidak akan menghilang. Armada pasti datang sesuai janji. GARANSI!
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-purple-500/20 p-4 sm:p-6 hover:border-purple-500/40 transition-all duration-300">
+                <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-purple-400 mx-auto mb-2 sm:mb-3" />
+                <h3 className="text-white font-semibold mb-2 text-sm sm:text-base">100% AMANAH</h3>
+                <p className="text-slate-400 text-xs sm:text-sm">
+                  Admin tidak akan menghilang. Armada pasti datang sesuai janji
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
-                <BanknoteArrowUp className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">TANPA DP</h3>
-                <p className="text-slate-400 text-sm">
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-4 sm:p-6 hover:border-cyan-500/40 transition-all duration-300">
+                <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
+                <h3 className="text-white font-semibold mb-2 text-sm sm:text-base">TANPA DP</h3>
+                <p className="text-slate-400 text-xs sm:text-sm">
                   Untuk transaksi di bawah 1 juta rupiah. Bayar cash saat armada tiba!
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
-                <Timer className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">TEPAT WAKTU</h3>
-                <p className="text-slate-400 text-sm">
+
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-4 sm:p-6 hover:border-cyan-500/40 transition-all duration-300">
+                <Timer className="h-6 w-6 sm:h-8 sm:w-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
+                <h3 className="text-white font-semibold mb-2 text-sm sm:text-base">TEPAT WAKTU</h3>
+                <p className="text-slate-400 text-xs sm:text-sm">
                   Driver datang 15 menit sebelum jadwal. Profesional dan attitude bagus!
                 </p>
               </div>
@@ -688,6 +756,6 @@ export default function CarRentalPage() {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   )
 }

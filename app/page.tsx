@@ -3,7 +3,21 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Car, Shield, MapPin, Phone, Star, Users, Menu, X, Zap, Cpu, Wifi, BanknoteX, BanknoteArrowUp, Timer } from "lucide-react"
+import {
+  Car,
+  Shield,
+  MapPin,
+  Phone,
+  Star,
+  Users,
+  Menu,
+  X,
+  Zap,
+  Cpu,
+  BanknoteX,
+  BanknoteArrowUp,
+  Timer,
+} from "lucide-react"
 import Image from "next/image"
 
 export default function CarRentalPage() {
@@ -42,18 +56,14 @@ export default function CarRentalPage() {
   }
 
   const openWhatsApp = (carName?: string) => {
-    const phoneNumber = "6281228797795";
+    const phoneNumber = "6281228797795"
     const message = carName
       ? `Halo, saya tertarik untuk menyewa ${carName}. Bisa berikan informasi lebih lanjut?`
-      : "Halo, saya tertarik dengan layanan rental mobil Anda. Bisa berikan informasi lebih lanjut?";
+      : "Halo, saya tertarik dengan layanan rental mobil Anda. Bisa berikan informasi lebih lanjut?"
 
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-    window.location.href = whatsappUrl;
-  };
-
-
-
-
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
+    window.location.href = whatsappUrl
+  }
 
   const cars = [
     {
@@ -80,10 +90,7 @@ export default function CarRentalPage() {
       rating: 4.9,
       type: "Gas",
     },
-
   ]
-
-
 
   const testimonials = [
     {
@@ -122,7 +129,6 @@ export default function CarRentalPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-cyan-500/20">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-
             <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-heading">
               Hagia Transport
             </span>
@@ -148,8 +154,6 @@ export default function CarRentalPage() {
           </nav>
 
           <div className="flex items-center gap-4">
-
-
             <button
               className="md:hidden text-slate-300 hover:text-cyan-400 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -190,8 +194,6 @@ export default function CarRentalPage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
-
-
             {/* Main heading */}
             <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 font-heading leading-tight">
               <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
@@ -199,16 +201,36 @@ export default function CarRentalPage() {
               </span>
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-6 py-2 mb-8 backdrop-blur-sm">
                 <Zap className="h-4 w-4 text-cyan-400" />
-                <span className="text-sm font-medium text-cyan-400">PROMO TERBATAS! Booking Hari Ini Dapat Diskon Khusus</span>
+                <span className="text-sm font-medium text-cyan-400">
+                  PROMO TERBATAS! Khusus Mahasiswa Solo
+                </span>
               </div>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl lg:text-2xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              BOSAN DITIPU
-              <span className="text-cyan-400 font-semibold"> Rental Mobil PALSU?</span> untuk pengalaman yang
-              seamless.
-            </p>
+            <div className="space-y-6 max-w-3xl mx-auto mb-12">
+              <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed">
+                Butuh mobil untuk <span className="text-cyan-400 font-semibold">kegiatan kampus, wisata, atau acara bersama teman?</span>
+                Hagia Transport hadir dengan syarat sewa yang <span className="text-cyan-400 font-semibold">mudah, harga kompetitif,</span> dan armada yang lengkap.
+              </p>
+
+              {/* 3 key points */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                <div className="flex items-center gap-3 bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3">
+                  <Car className="h-5 w-5 text-cyan-400" />
+                  <span className="text-slate-300 text-sm">Armada Lengkap</span>
+                </div>
+                <div className="flex items-center gap-3 bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3">
+                  <Shield className="h-5 w-5 text-purple-400" />
+                  <span className="text-slate-300 text-sm">Syarat Mudah & Aman</span>
+                </div>
+                <div className="flex items-center gap-3 bg-slate-800/40 border border-slate-700 rounded-lg px-4 py-3">
+                  <BanknoteArrowUp className="h-5 w-5 text-cyan-400" />
+                  <span className="text-slate-300 text-sm">Harga Terjangkau</span>
+                </div>
+              </div>
+            </div>
+
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
@@ -244,8 +266,6 @@ export default function CarRentalPage() {
                   height={800}
                   className="w-full h-auto"
                 />
-
-
               </div>
             </div>
 
@@ -260,24 +280,192 @@ export default function CarRentalPage() {
               <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-purple-500/20 p-6 hover:border-purple-500/40 transition-all duration-300">
                 <Zap className="h-8 w-8 text-purple-400 mx-auto mb-3" />
                 <h3 className="text-white font-semibold mb-2">100% AMANAH</h3>
-                <p className="text-slate-400 text-sm">Admin tidak akan menghilang. Armada pasti datang sesuai janji. GARANSI!</p>
+                <p className="text-slate-400 text-sm">
+                  Admin tidak akan menghilang. Armada pasti datang sesuai janji. GARANSI!
+                </p>
               </div>
 
               <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
                 <BanknoteArrowUp className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
                 <h3 className="text-white font-semibold mb-2">TANPA DP</h3>
-                <p className="text-slate-400 text-sm">Untuk transaksi di bawah 1 juta rupiah. Bayar cash saat armada tiba!</p>
+                <p className="text-slate-400 text-sm">
+                  Untuk transaksi di bawah 1 juta rupiah. Bayar cash saat armada tiba!
+                </p>
               </div>
               <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-xl border border-cyan-500/20 p-6 hover:border-cyan-500/40 transition-all duration-300">
                 <Timer className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
                 <h3 className="text-white font-semibold mb-2">TEPAT WAKTU</h3>
-                <p className="text-slate-400 text-sm">Driver datang 15 menit sebelum jadwal. Profesional dan attitude bagus!</p>
+                <p className="text-slate-400 text-sm">
+                  Driver datang 15 menit sebelum jadwal. Profesional dan attitude bagus!
+                </p>
               </div>
-
             </div>
           </div>
         </div>
       </section>
+
+
+      {/* <section className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 font-heading">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                Solusi Khusus Untuk Setiap Kebutuhan
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">Kami memahami kebutuhan unik setiap pelanggan</p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <Card className="bg-gradient-to-br from-red-900/30 to-orange-900/30 border-red-500/30 backdrop-blur-sm hover:border-red-400/50 transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="bg-gradient-to-br from-red-500/20 to-orange-500/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-red-500/30">
+                    <MapPin className="h-8 w-8 text-red-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 font-heading">WISATAWAN</h3>
+                  <p className="text-red-300 text-sm font-medium">Usia 21-50 tahun • Booking dari Bandara</p>
+                </div>
+
+                <div className="bg-red-900/20 border border-red-500/20 rounded-lg p-4 mb-6">
+                  <h4 className="text-red-300 font-semibold mb-2">❌ PERNAH MENGALAMI INI?</h4>
+                  <ul className="text-slate-300 text-sm space-y-1">
+                    <li>• Sudah DP tapi mobil tidak datang</li>
+                    <li>• Admin tiba-tiba menghilang</li>
+                    <li>• Tertipu rental mobil palsu</li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-900/20 border border-green-500/20 rounded-lg p-4 mb-6">
+                  <h4 className="text-green-300 font-semibold mb-2">✅ HAGIA TRANSPORT SOLUSINYA!</h4>
+                  <ul className="text-slate-300 text-sm space-y-1">
+                    <li>• Tanpa DP untuk transaksi kurang dari 1 juta rupiah</li>
+                    <li>• Admin komunikatif & profesional</li>
+                    <li>• Armada datang tepat waktu</li>
+                    <li>• 100% AMANAH & TERPERCAYA</li>
+                  </ul>
+                </div>
+
+                <Button
+                  onClick={() => openWhatsApp("untuk wisatawan")}
+                  className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 border-0 text-white font-semibold"
+                >
+                  BOOKING AMAN SEKARANG!
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-blue-500/30 backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
+                    <Users className="h-8 w-8 text-blue-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 font-heading">MAHASISWA</h3>
+                  <p className="text-blue-300 text-sm font-medium">Usia 19-23 tahun • Kegiatan Kampus & Wisata</p>
+                </div>
+
+                <div className="bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 mb-6">
+                  <h4 className="text-blue-300 font-semibold mb-2">🎓 BUTUH MOBIL UNTUK:</h4>
+                  <ul className="text-slate-300 text-sm space-y-1">
+                    <li>• Kegiatan kampus bersama</li>
+                    <li>• Trip wisata dengan teman</li>
+                    <li>• Acara organisasi mahasiswa</li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-900/20 border border-green-500/20 rounded-lg p-4 mb-6">
+                  <h4 className="text-green-300 font-semibold mb-2">💰 PAKET KHUSUS MAHASISWA:</h4>
+                  <ul className="text-slate-300 text-sm space-y-1">
+                    <li>• Syarat mudah & fleksibel</li>
+                    <li>• Harga kompetitif untuk mahasiswa</li>
+                    <li>• Armada lengkap & terawat</li>
+                    <li>• Proses cepat tanpa ribet</li>
+                  </ul>
+                </div>
+
+                <Button
+                  onClick={() => openWhatsApp("paket mahasiswa")}
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 border-0 text-white font-semibold"
+                >
+                  TANYA HARGA MAHASISWA!
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-500/30 backdrop-blur-sm hover:border-purple-400/50 transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
+                    <Shield className="h-8 w-8 text-purple-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 font-heading">PEGAWAI KEMENTERIAN</h3>
+                  <p className="text-purple-300 text-sm font-medium">Usia 50 tahun • Pelayanan Protokol VIP</p>
+                </div>
+
+                <div className="bg-purple-900/20 border border-purple-500/20 rounded-lg p-4 mb-6">
+                  <h4 className="text-purple-300 font-semibold mb-2">👑 ARMADA VIP TERSEDIA:</h4>
+                  <ul className="text-slate-300 text-sm space-y-1">
+                    <li>• Alphard</li>
+                    <li>• Fortuner</li>
+                    <li>• Innova</li>
+                    <li>• New Avanza</li>
+                    <li>• Semua armada premium</li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-900/20 border border-green-500/20 rounded-lg p-4 mb-6">
+                  <h4 className="text-green-300 font-semibold mb-2">🏛️ LAYANAN PROTOKOL LENGKAP:</h4>
+                  <ul className="text-slate-300 text-sm space-y-1">
+                    <li>• Penjemputan bandara</li>
+                    <li>• Antar ke venue & hotel</li>
+                    <li>• Driver muda, rapi & handal</li>
+                    <li>• Pelayanan profesional</li>
+                  </ul>
+                </div>
+
+                <Button
+                  onClick={() => openWhatsApp("layanan protokol VIP")}
+                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 border-0 text-white font-semibold"
+                >
+                  KONSULTASI PROTOKOL VIP!
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-2xl border border-cyan-500/30 p-8 max-w-4xl mx-auto">
+              <h3 className="text-3xl font-bold text-white mb-4 font-heading">
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  HAGIA TRANSPORT - SOLUSI UNTUK SEMUA!
+                </span>
+              </h3>
+              <p className="text-lg text-slate-300 mb-6">
+                Apapun kebutuhan Anda, kami siap melayani dengan profesional dan amanah
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  size="lg"
+                  onClick={() => openWhatsApp()}
+                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 border-0 shadow-lg shadow-green-500/25 text-lg px-8 py-4"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  CHAT WHATSAPP SEKARANG
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => scrollToSection("fleet")}
+                  className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 text-lg px-8 py-4"
+                >
+                  LIHAT SEMUA ARMADA
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
 
       {/* Fleet Section */}
       <section id="fleet" className="py-16 relative">
@@ -300,12 +488,17 @@ export default function CarRentalPage() {
                 className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 group overflow-hidden"
               >
                 <div className="relative">
-                  <Image src={car.image || "/placeholder.svg"} width={800} height={800} alt={car.name} className="w-full h-64 object-cover" />
+                  <Image
+                    src={car.image || "/placeholder.svg"}
+                    width={800}
+                    height={800}
+                    alt={car.name}
+                    className="w-full h-64 object-cover"
+                  />
                   <div className="absolute top-4 right-4 bg-slate-900/90 px-3 py-1 rounded-full flex items-center gap-1 border border-cyan-500/30">
                     <Star className="h-4 w-4 text-yellow-400 fill-current" />
                     <span className="text-sm font-medium text-white">{car.rating}</span>
                   </div>
-
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold text-white mb-2 font-heading">{car.name}</h3>
@@ -340,6 +533,7 @@ export default function CarRentalPage() {
         </div>
       </section>
 
+      {/* Testimonial Section */}
       <section id="testimonial" className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -449,21 +643,20 @@ export default function CarRentalPage() {
         </div>
       </section>
 
-
-
       {/* Footer */}
       <footer className="bg-gradient-to-r from-slate-900 to-purple-900 border-t border-cyan-500/20 py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="relative">
-                  <Car className="h-8 w-8 text-cyan-400" />
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
-                </div>
+
                 <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-heading">
                   Hagia Transport
                 </span>
+                <div className="relative">
+
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+                </div>
               </div>
               <p className="text-slate-300 mb-4">
                 Kami HAGIA TRANSPORT hadir sebagai solusi TERPERCAYA untuk semua masalah rental mobil di Solo.

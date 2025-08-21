@@ -5,6 +5,7 @@
 
 :root {
   /* Updated color tokens to match car rental design brief */
+  --font-rubik: "Rubik", sans-serif;
   --background: #ffffff;
   --foreground: #475569;
   --card: #ecfeff;
@@ -120,6 +121,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-rubik), sans-serif;
   }
 
   /* Added smooth scrolling behavior */

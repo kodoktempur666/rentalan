@@ -19,13 +19,13 @@ const rubik = Rubik({
 })
 
 export const metadata: Metadata = {
-  title: "DEKOPIN Wilayah Jawa Tengah - Membangun Ekonomi Kerakyatan",
+  title: "Hagia Transport - Rental Mobil Solo",
   description:
-    "Dewan Koperasi Indonesia Wilayah Jawa Tengah berkomitmen memperkuat peran koperasi sebagai pilar ekonomi kerakyatan melalui pembinaan, pelatihan, dan pengembangan jejaring bisnis yang berkelanjutan.",
+    "Sewa mobil berkualitas di Solo untuk berbagai kebutuhan, mulai dari acara keluarga hingga perjalanan bisnis. Pilih dari berbagai jenis mobil dengan harga terjangkau dan layanan terbaik.",
   verification: {
     google: "ZOFcpp9EgmwMpHJUeBZMe7T9IA9CXTO0GY04h5fRKrw",
   },
-  icons: { icon: '/Logo-Koperasi.png' },
+
 }
 
 export default function RootLayout({

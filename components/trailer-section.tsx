@@ -15,7 +15,7 @@ export function TrailerSection() {
                 >
                     <h2 className="text-4xl font-bold text-slate-900 mb-4">Pernah DP, Untuk Booking Rental Mobil, <h2 className="text-4xl font-bold text-primary">tapi Saat Hari Sewa , Mobil Tidak Datang?</h2></h2>
                     <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                        Rental Mobil Hagia Transport Siap melayani Kebutuhan Perjalanan Mu.
+                        Rental Mobil Hagia Transport Siap melayani Kebutuhan Perjalananmu.
                     </p>
                 </motion.div>
 

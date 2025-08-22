@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Phone, Mail, PhoneCall } from "lucide-react"
+import Image from "next/image"
 
 
 
@@ -51,7 +52,8 @@ export function Header({ openWhatsApp }: HeaderProps) {
 
       <nav className="px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
+            <Image src="/logo.png" alt="Logo" width={80} height={80} className=""/>
             <h1 className={`text-2xl font-bold ${isScrolled ? "text-foreground" : "text-primary"}`}>
               Hagia<span className={`transition-colors duration-200 ${isScrolled ? "text-primary" : "text-white"}`}>Transport</span>
             </h1>

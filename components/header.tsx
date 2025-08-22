@@ -38,13 +38,9 @@ export function Header({ openWhatsApp }: HeaderProps) {
       <div className="bg-primary text-primary-foreground py-2 px-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               <Phone className="h-4 w-4" />
               <span>+62 21 1234 5678</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4" />
-              <span>info@hagiatransport.com</span>
             </div>
           </div>
           <div className="hidden md:block">
@@ -87,13 +83,13 @@ export function Header({ openWhatsApp }: HeaderProps) {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-fade-in-up">
+          <div className={`md:hidden mt-4 pb-4 animate-fade-in-up  ${isScrolled ? "py-2 px-2" : "backdrop-blur-md bg-secondary/70 rounded-sm py-2 px-2"}`}>
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`transition-colors duration-200 font-medium ${isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-primary"
+                  className={`transition-colors duration-200  font-medium ${isScrolled ? "text-foreground hover:text-primary px-4 py-2 bg-blur" : "text-primary hover:text-primary rounded-md px-4 py-2 bg-secondary"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -106,6 +102,7 @@ export function Header({ openWhatsApp }: HeaderProps) {
             </div>
           </div>
         )}
+
       </nav>
     </header>
   )

@@ -47,7 +47,7 @@ export function TrailerSection() {
                     viewport={{ once: true }}
                     className="text-center mt-8"
                 >
-                    <p className="text-slate-500 text-sm">Video menampilkan testimoni klien dan showcase armada premium kami</p>
+
                 </motion.div>
             </div>
         </section>

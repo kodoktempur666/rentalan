@@ -4,41 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens to match car rental design brief */
-  --font-rubik: "Rubik", sans-serif;
-  --background: #ffffff;
-  --foreground: #475569;
-  --card: #ecfeff;
-  --card-foreground: #164e63;
-  --popover: #ffffff;
-  --popover-foreground: #475569;
-  --primary: #164e63;
-  --primary-foreground: #ffffff;
-  --secondary: #f97316;
-  --secondary-foreground: #ffffff;
-  --muted: #f0fdf4;
-  --muted-foreground: #374151;
-  --accent: #f97316;
-  --accent-foreground: #ffffff;
-  --destructive: #ea580c;
-  --destructive-foreground: #ffffff;
-  --border: #d1d5db;
-  --input: #ffffff;
-  --ring: rgba(22, 78, 99, 0.5);
-  --chart-1: #e5e7eb;
-  --chart-2: #d1fae5;
-  --chart-3: #fbbf24;
-  --chart-4: #f97316;
-  --chart-5: #ea580c;
+  /* Updated color tokens for corporate blue theme */
+  --background: oklch(1 0 0); /* White background */
+  --foreground: oklch(0.2 0.05 240); /* Dark blue text */
+  --card: oklch(0.96 0.02 240); /* Light blue card background */
+  --card-foreground: oklch(0.2 0.05 240); /* Dark blue card text */
+  --popover: oklch(1 0 0); /* White popover */
+  --popover-foreground: oklch(0.2 0.05 240); /* Dark blue popover text */
+  --primary: oklch(0.35 0.15 240); /* Medium blue primary */
+  --primary-foreground: oklch(1 0 0); /* White text on primary */
+  --secondary: oklch(0.75 0.05 240); /* Light slate blue secondary */
+  --secondary-foreground: oklch(0.2 0.05 240); /* Dark blue secondary text */
+  --muted: oklch(0.98 0.01 240); /* Very light blue muted */
+  --muted-foreground: oklch(0.2 0.05 240); /* Dark blue muted text */
+  --accent: oklch(0.35 0.15 240); /* Medium blue accent */
+  --accent-foreground: oklch(1 0 0); /* White accent text */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.75 0.05 240); /* Light slate blue border */
+  --input: oklch(1 0 0); /* White input background */
+  --ring: oklch(0.35 0.15 240 / 0.5); /* Medium blue ring with opacity */
+  --chart-1: oklch(0.2 0.05 240);
+  --chart-2: oklch(0.35 0.15 240);
+  --chart-3: oklch(0.75 0.05 240);
+  --chart-4: oklch(0.96 0.02 240);
+  --chart-5: oklch(0.2 0.05 240);
   --radius: 0.5rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #475569;
-  --sidebar-primary: #164e63;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f97316;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #d1d5db;
-  --sidebar-ring: rgba(22, 78, 99, 0.5);
+  --sidebar: oklch(0.98 0.01 240);
+  --sidebar-foreground: oklch(0.2 0.05 240);
+  --sidebar-primary: oklch(0.96 0.02 240);
+  --sidebar-primary-foreground: oklch(0.2 0.05 240);
+  --sidebar-accent: oklch(0.35 0.15 240);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.75 0.05 240);
+  --sidebar-ring: oklch(0.35 0.15 240 / 0.5);
 }
 
 .dark {
@@ -121,11 +120,63 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-rubik), sans-serif;
   }
+}
 
-  /* Added smooth scrolling behavior */
-  html {
-    scroll-behavior: smooth;
+/* Added custom animations for corporate website */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-600 {
+  animation-delay: 0.6s;
 }

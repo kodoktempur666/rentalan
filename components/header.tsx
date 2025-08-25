@@ -64,7 +64,7 @@ export function Header({ openWhatsApp }: HeaderProps) {
               <a
                 key={item.name}
                 href={item.href}
-                className={`transition-colors duration-200 font-medium ${isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-primary"
+                className={`transition-colors duration-200 font-medium ${isScrolled ? "text-foreground hover:text-primary" : "text-white hover:underline decoration-white underline-offset-2"
                   }`}
               >
                 {item.name}

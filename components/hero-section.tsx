@@ -66,21 +66,21 @@ export function HeroSection({ openWhatsApp }: HeroProps) {
         {/* Key Features */}
         <div className="animate-fade-in-up animate-delay-400 mb-25">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="flex flex-col items-center text-center animate-scale-in animate-delay-200 px-2">
+            <div className="flex flex-col items-center text-center  px-2">
               <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 mb-4">
                 <Shield className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-base sm:text-lg font-semibold mb-2">Jaminan 100% Uang Kembali</h3>
               <p className="text-sm opacity-90">Jika tidak sesuai janji, uang 100% dikembalikan</p>
             </div>
-            <div className="flex flex-col items-center text-center animate-scale-in animate-delay-400 px-2">
+            <div className="flex flex-col items-center text-center  px-2">
               <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 mb-4">
                 <Clock className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-base sm:text-lg font-semibold mb-2">Tepat Waktu</h3>
               <p className="text-sm opacity-90">Driver datang 15 menit sebelum jadwal. Profesional dan attitude bagus!</p>
             </div>
-            <div className="flex flex-col items-center text-center animate-scale-in animate-delay-600 px-2">
+            <div className="flex flex-col items-center text-center  px-2">
               <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 mb-4">
                 <Car className="h-8 w-8 text-white" />
               </div>
